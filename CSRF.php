@@ -184,6 +184,7 @@ class CSRF
     {
         //check request method
         if (
+            !getenv('_PROTECT_CSRF') ||
             empty($_SERVER['REQUEST_METHOD']) ||
             $_SERVER['REQUEST_METHOD'] == 'GET' ||
             $_SERVER['REQUEST_METHOD'] == 'HEAD'
@@ -199,7 +200,7 @@ class CSRF
         if ($this->drive == 'COOKIE') {
             return $this->getCookie() === $this->encode($_POST['_token']);
         } else {
-            return current($this->getSession()) ===  $_POST['_token'];
+            return current($this->getSession()) === $_POST['_token'];
         }
     }
 }

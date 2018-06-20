@@ -5,7 +5,9 @@ $startTime = microtime(true);
 require '../CSRF.php';
 $ss = CSRF::init();
 
-var_dump($ss->validate());
+if (empty($_POST)) {
+    $ss->validate();
+}
 
 echo (memory_get_usage() - $start) /1024, '<br/>';
 echo (microtime(true) - $startTime);
