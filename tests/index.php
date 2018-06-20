@@ -8,9 +8,11 @@ $ss = CSRF::init();
 if (empty($_POST)) {
     $ss->validate();
 }
-
-echo (memory_get_usage() - $start) /1024, '<br/>';
-echo (microtime(true) - $startTime);
+$endTime = (round(microtime(true) - $startTime, 5));
+echo '<pre>';
+echo 'Memory Usaged: ', (memory_get_usage() - $start) / 1024, 'KB <br/>';
+echo 'Timeline: ', $endTime, 'seconds';
+echo '</pre>';
 ?>
 <!DOCTYPE html>
 <html lang="en">
